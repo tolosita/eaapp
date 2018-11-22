@@ -23,6 +23,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RecuperarComponent } from './auth/recuperar/recuperar.component';
 import { HomeComponent } from './dashboard/home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NavComponent } from './shared/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     LoginComponent,
     RecuperarComponent,
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
