@@ -7,6 +7,6 @@ export interface AppState {
 }
 
 export const appReducers: ActionReducerMap<AppState> = {
-    auth: fromAuth.authReducer
+    auth: fromAuth.AuthReducer
 };
 
