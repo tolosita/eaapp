@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../app.reducer';
+import { AppState } from '../../../store/app.reducer';
 import { Subscription } from 'rxjs';
 
 @Component({

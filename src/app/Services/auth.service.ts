@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { User } from '../Models/user.model';
-import { LoginUser, LogoutUser } from '../Actions/auth.actions';
+import { LoginUser, LogoutUser } from '../store/Actions/auth.actions';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../app.reducer';
+import { AppState } from '../Store/app.reducer';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 

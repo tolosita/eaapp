@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { AuthService } from '../../auth/service/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../app.reducer';
-import { SetPage } from '../Actions/nav.actions';
+import { AppState } from '../../../store/app.reducer';
+import { SetPage } from '../../../store/Actions/nav.actions';
 import { Router } from '@angular/router';
-import { User } from 'src/app/auth/Models/user.model';
+import { User } from '../../../models/user.model';
 import { Subscription } from 'rxjs';
 declare var M: any;
 

@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // NGRX
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { appReducers } from './app.reducer';
+import { appReducers } from './store/app.reducer';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -19,14 +19,14 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RecuperarComponent } from './auth/recuperar/recuperar.component';
-import { HomeComponent } from './dashboard/home/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NavComponent } from './shared/nav/nav.component';
-import { SidenavComponent } from './shared/sidenav/sidenav.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { UsuariosComponent } from './dashboard/usuarios/usuarios.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RecuperarComponent } from './components/auth/recuperar/recuperar.component';
+import { HomeComponent } from './components/dashboard/home/home.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NavComponent } from './components/shared/nav/nav.component';
+import { SidenavComponent } from './components/shared/sidenav/sidenav.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
+import { UsuariosComponent } from './components/dashboard/usuarios/usuarios.component';
 
 @NgModule({
   declarations: [
