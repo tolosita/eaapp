@@ -1,7 +1,7 @@
 import { ActionReducerMap } from '@ngrx/store';
 
-import * as fromAuth from './auth/Reducers/auth.reducer';
-import * as fromNav from './shared/Reducers/nav.reducer';
+import * as fromAuth from './Reducers/auth.reducer';
+import * as fromNav from './Reducers/nav.reducer';
 
 export interface AppState {
     auth: fromAuth.AuthState;
