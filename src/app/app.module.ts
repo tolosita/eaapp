@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 // Modulos
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from './angularMaterial.module';
 
@@ -23,6 +24,7 @@ import { NavComponent } from './components/shared/nav/nav.component';
 import { SidenavComponent } from './components/shared/sidenav/sidenav.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { UsuariosComponent } from './components/dashboard/usuarios/usuarios.component';
+import { MessagesComponent } from './components/shared/dialog/messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -34,11 +36,13 @@ import { UsuariosComponent } from './components/dashboard/usuarios/usuarios.comp
     NavComponent,
     SidenavComponent,
     FooterComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot(appReducers),

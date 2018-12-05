@@ -5,6 +5,9 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../Store/app.reducer';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AppService } from '../app.service';
+import { Constants } from '../app.constants';
+import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +18,9 @@ export class AuthService {
 
   constructor(
     private router: Router,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private appService: AppService,
+    private alertService: AlertService
   ) { }
 
   initAuthListener() {
@@ -26,8 +31,14 @@ export class AuthService {
   }
 
   login(user: User) {
-    this.store.dispatch(new LoginUser(user));
-    this.router.navigate(['/']);
+    this.appService.postRequest(Constants.PATH_USUARIOS, user)
+      .then(response => {
+        this.store.dispatch(new LoginUser(user));
+        this.router.navigate(['/']);
+      })
+      .catch(error => {
+        this.alertService.openDialog(error.error);
+      });
   }
 
   logout() {

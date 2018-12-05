@@ -11,13 +11,13 @@ export class LoginComponent {
 
   loginForm = this.fb.group({
     email: [null, [Validators.required, Validators.email]],
-    password: [null, Validators.required]
+    clave: [null, Validators.required]
   });
 
   constructor(private fb: FormBuilder, private authService: AuthService) { }
 
   onSubmit() {
-    if (this.loginForm.invalid) { return; };
+    if (this.loginForm.invalid) { return; }
     this.authService.login(this.loginForm.value);
   }
 
@@ -28,5 +28,5 @@ export class LoginComponent {
   }
 
   get email() { return this.loginForm.get('email'); }
-  get password() { return this.loginForm.get('password'); }
+  get clave() { return this.loginForm.get('clave'); }
 }

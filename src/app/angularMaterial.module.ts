@@ -3,9 +3,11 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     MatGridListModule, MatListModule, MatCardModule, MatMenuModule,
-    MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule
+    MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule,
+    MatDialogModule
 } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
+import { MessagesComponent } from './components/shared/dialog/messages/messages.component';
 
 @NgModule({
     imports: [
@@ -18,6 +20,7 @@ import { LayoutModule } from '@angular/cdk/layout';
         MatButtonModule,
         MatInputModule,
         MatFormFieldModule,
+        MatDialogModule,
         LayoutModule
     ],
     exports: [
@@ -30,7 +33,11 @@ import { LayoutModule } from '@angular/cdk/layout';
         MatButtonModule,
         MatInputModule,
         MatFormFieldModule,
+        MatDialogModule,
         LayoutModule
+    ],
+    entryComponents: [
+        MessagesComponent
     ]
 })
 export class AngularMaterialModule { }
