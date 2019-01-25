@@ -1,55 +1,38 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { User } from '../Models/user.model';
-import { LoginUser, LogoutUser, LoggedUser, LoginUserError } from '../store/Actions/auth.actions';
+import { LogoutUser } from '../store/Actions/auth.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../Store/app.reducer';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { AppService } from '../app.service';
+import { Observable } from 'rxjs';
 import { Constants } from '../app.constants';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  logged: User;
-  subscription: Subscription;
 
   constructor(
-    private router: Router,
+    private http: HttpClient,
     private store: Store<AppState>,
-    private appService: AppService
+    @Inject('LOCALSTORAGE') private localStorage: any
   ) { }
 
-  initAuthListener() {
-    this.subscription = this.store.select('auth')
-      .subscribe(auth => {
-        this.logged = auth.user;
-      });
+  getToken(): string {
+    return this.localStorage.getItem('token');
   }
 
-  login(user: User) {
-    this.store.dispatch(new LoginUser());
-    this.appService.postRequest(Constants.PATH_LOGIN, user)
-      .then((response: User) => {
-        this.store.dispatch(new LoggedUser(response));
-        this.router.navigate(['/']);
-      })
-      .catch(error => {
-        console.log(error);
-        this.store.dispatch(new LoginUserError(error.error.mensaje));
-      });
+  isLoggedIn() {
+    const token = this.getToken();
+    return token != null;
+  }
+
+  login(user: User): Observable<any> {
+    return this.http.post(`${Constants.API_ENDPOINT}/${Constants.PATH_LOGIN}`, user);
   }
 
   logout() {
-    this.router.navigate(['/login']);
     this.store.dispatch(new LogoutUser());
   }
 
-  isAuth() {
-    // if (this.logged == null) {
-    //   this.router.navigate(['/login']);
-    // }
-    return true; // this.logged != null;
-  }
 }

@@ -1,6 +1,27 @@
-<app-nav></app-nav>
-<app-sidenav></app-sidenav>
-<main>
-    <app-loader></app-loader>
-    <router-outlet></router-outlet>
-</main>
+<mat-toolbar color="primary">
+    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()" *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <span>{{ title }}</span>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav class="sidenav" fixedInViewport="false" role="navigation" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="!(isHandset$ | async)">
+        <mat-nav-list>
+            <a mat-list-item [routerLink]="ruta.path" (click)="setRuta(ruta.title)" *ngFor="let ruta of rutas">
+                <mat-icon matListIcon>{{ ruta.icon }}</mat-icon>
+                <p>{{ ruta.name }}</p>
+            </a>
+            <a mat-list-item (click)="logout()">
+                <mat-icon matListIcon>exit_to_app</mat-icon>
+                <p>Cerrar Sesión</p>
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content role="directory">
+        <app-loader></app-loader>
+        <router-outlet></router-outlet>
+        <app-footer></app-footer>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,11 @@
+.sidenav-container {
+  height: calc(100vh - 64px);
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav mat-nav-list a p {
+  margin-left: 1em;
+}

@@ -6,6 +6,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
   styles: []
 })
 export class LoaderComponent implements OnInit, OnDestroy {
+  cargando: Boolean = false;
+
   constructor(
   ) { }
 

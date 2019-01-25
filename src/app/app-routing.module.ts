@@ -15,7 +15,7 @@ const routes: Routes = [
     children: dashboardRoutes,
     canActivate: [AuthGuardService]
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '/' }
 ];
 
 @NgModule({

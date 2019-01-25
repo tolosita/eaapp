@@ -4,4 +4,8 @@ export class Constants {
     public static PATH_LOGIN = 'login';
     public static PATH_CARGOS = 'cargos';
     public static IMAGES = 'assets/images';
+
+    public static 401 = 'El usuario se encuentra inactivo';
+    public static 403 = 'Email o Contraseña inválida';
+    public static 404 = 'Servidor Inaccesible';
 }

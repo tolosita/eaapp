@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     MatGridListModule, MatListModule, MatCardModule, MatMenuModule,
     MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatCheckboxModule,
-    MatDialogModule, MatProgressBarModule
+    MatDialogModule, MatProgressBarModule, MatToolbarModule, MatSidenavModule
 } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MessagesComponent } from './components/shared/dialog/messages/messages.component';
@@ -23,7 +23,9 @@ import { MessagesComponent } from './components/shared/dialog/messages/messages.
         MatCheckboxModule,
         MatDialogModule,
         MatProgressBarModule,
-        LayoutModule
+        LayoutModule,
+        MatToolbarModule,
+        MatSidenavModule
     ],
     exports: [
         BrowserAnimationsModule,
@@ -38,10 +40,13 @@ import { MessagesComponent } from './components/shared/dialog/messages/messages.
         MatCheckboxModule,
         MatDialogModule,
         MatProgressBarModule,
-        LayoutModule
+        LayoutModule,
+        MatToolbarModule,
+        MatSidenavModule
     ],
     entryComponents: [
         MessagesComponent
-    ]
+    ],
+    declarations: []
 })
 export class AngularMaterialModule { }

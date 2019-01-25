@@ -19,7 +19,7 @@ export class AlertService {
 
   initAlertListener() {
     this.alertSubcription = this.store.select('error')
-      .pipe(filter(error => error != null))
+      .pipe(filter(error => error.tipo !== null))
       .subscribe(error => {
         this.dialog.open(MessagesComponent, { data: error });
       });

@@ -4,6 +4,7 @@ import { AuthService } from '../../../services/auth.service';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/app.reducer';
+import { LoginUser } from '../../../store/Actions/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -22,8 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private store: Store<AppState>,
-    private authService: AuthService
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   onSubmit() {
     if (this.loginForm.invalid) { return; }
     delete this.loginForm.value.recordar;
-    this.authService.login(this.loginForm.value);
+    this.store.dispatch(new LoginUser(this.loginForm.value));
   }
 
   getErrorMessage(input: FormControl) {

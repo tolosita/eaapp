@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import { AlertService } from './services/alert.service';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +10,11 @@ import { AuthService } from './services/auth.service';
 export class AppComponent implements OnInit {
 
   constructor(
-    private authService: AuthService
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
-    this.authService.initAuthListener();
+    this.alertService.initAlertListener();
   }
 
 }
