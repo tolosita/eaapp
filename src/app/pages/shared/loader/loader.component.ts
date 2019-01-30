@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 
 @Component({
   selector: 'app-loader',
@@ -6,7 +6,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
   styles: []
 })
 export class LoaderComponent implements OnInit, OnDestroy {
-  cargando: Boolean = false;
+  @Input() cargando: boolean;
 
   constructor(
   ) { }

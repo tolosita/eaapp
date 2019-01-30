@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
-import { AuthService } from '../../../services/auth.service';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../store/app.reducer';
+import { AppState } from '../../../store/app.store';
 import { LoginUser } from '../../../store/Actions/auth.actions';
 
 @Component({

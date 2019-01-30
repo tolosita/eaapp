@@ -39,7 +39,7 @@ import {
     MatTreeModule,
     MatFormFieldModule
 } from '@angular/material';
-import { MessagesComponent } from './components/shared/dialog/messages/messages.component';
+import { MessagesComponent } from './pages/shared/dialog/messages/messages.component';
 
 @NgModule({
     imports: [

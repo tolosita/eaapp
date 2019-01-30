@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { MessagesComponent } from '../components/shared/dialog/messages/messages.component';
+import { MessagesComponent } from '../pages/shared/dialog/messages/messages.component';
 import { Store } from '@ngrx/store';
-import { AppState } from '../store/app.reducer';
+import { AppState } from '../store/app.store';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 

@@ -1,5 +1,4 @@
 import * as AuthActions from '../Actions/auth.actions';
-import { AuthActionTypes } from '../Actions/auth.actions';
 
 import { User } from '../../models/user.model';
 
@@ -7,7 +6,7 @@ export interface AuthState {
     isAuthenticated: boolean;
     user: User;
     isLoading: boolean;
-    error: string;
+    error: any;
 }
 
 const stateInit: AuthState = {
@@ -19,13 +18,13 @@ const stateInit: AuthState = {
 
 export function AuthReducer(state = stateInit, action: AuthActions.actions): AuthState {
     switch (action.type) {
-        case AuthActionTypes.LoginUser:
+        case AuthActions.AuthActionTypes.LoginUser:
             return { ...state, isLoading: true, error: null };
-        case AuthActionTypes.LoggedUser:
+        case AuthActions.AuthActionTypes.LoggedUser:
             return { ...state, user: action.payload.user, isAuthenticated: true, isLoading: false };
-        case AuthActionTypes.LoginUserError:
+        case AuthActions.AuthActionTypes.LoginUserError:
             return { ...state, error: action.payload, isLoading: false };
-        case AuthActionTypes.LogoutUser:
+        case AuthActions.AuthActionTypes.LogoutUser:
             return { ...state, isAuthenticated: false, user: null };
         default:
             return state;

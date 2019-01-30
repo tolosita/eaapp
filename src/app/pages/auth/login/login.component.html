@@ -11,18 +11,20 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-subtitle *ngIf="error" class="error-text-login">
-          {{ error }}
+          {{ error.message }}
         </mat-card-subtitle>
         <mat-card-content class="content-input-login">
           <p>
-            <mat-form-field>
-              <input matInput placeholder="Email" formControlName="email">
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email">
               <mat-error *ngIf="email.invalid">{{getErrorMessage(email)}}</mat-error>
             </mat-form-field>
           </p>
           <p>
-            <mat-form-field>
-              <input matInput placeholder="Contraseña" formControlName="clave">
+            <mat-form-field appearance="outline">
+              <mat-label>Contraseña</mat-label>
+              <input matInput formControlName="clave">
               <mat-error *ngIf="clave.invalid">{{getErrorMessage(clave)}}</mat-error>
             </mat-form-field>
           </p>

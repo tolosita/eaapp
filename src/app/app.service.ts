@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Constants } from './app.constants';
 import { Store } from '@ngrx/store';
-import { AppState } from './store/app.reducer';
+import { AppState } from './store/app.store';
 import { Observable } from 'rxjs';
 
 @Injectable({

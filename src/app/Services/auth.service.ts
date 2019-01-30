@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { User } from '../Models/user.model';
 import { LogoutUser } from '../store/Actions/auth.actions';
 import { Store } from '@ngrx/store';
-import { AppState } from '../Store/app.reducer';
+import { AppState } from '../store/app.store';
 import { Observable } from 'rxjs';
 import { Constants } from '../app.constants';
 import { HttpClient } from '@angular/common/http';
