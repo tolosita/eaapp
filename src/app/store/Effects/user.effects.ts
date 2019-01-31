@@ -8,6 +8,7 @@ import { SetError } from '../Actions/alert.actions';
 import { UsuariosService } from '../../services/usuarios.service';
 import { MatDialog } from '@angular/material';
 import { UsuarioComponent } from '../../pages/shared/dialog/usuario/usuario.component';
+import { Constants } from '../../app.constants';
 
 @Injectable()
 export class UserEffects {
@@ -19,16 +20,16 @@ export class UserEffects {
 
     @Effect()
     LoadUser$: Observable<Action> = this.actions$.pipe(
-        ofType<userActions.LoadUser>(userActions.UserActionTypes.LoadUser),
-        tap(data => console.log(userActions.UserActionTypes.LoadUser, data)),
+        ofType<userActions.LoadUsers>(userActions.UserActionTypes.LoadUsers),
+        tap(data => console.log(userActions.UserActionTypes.LoadUsers, data)),
         mergeMap((action) =>
             this.usuarioService.getUsuarios()
                 .pipe(
                     map((response) => {
-                        return new userActions.LoadedUser(response);
+                        return new userActions.LoadedUsers(response);
                     }),
                     catchError((error) => {
-                        return of(new SetError(error, 'info'));
+                        return of(new SetError(Constants[error.status], 'info'));
                     })
                 )
         )
@@ -36,8 +37,8 @@ export class UserEffects {
 
     @Effect({ dispatch: false })
     LoadedUser$: Observable<Action> = this.actions$.pipe(
-        ofType(userActions.UserActionTypes.LoadedUser),
-        tap((data: userActions.LoadedUser) => console.log(userActions.UserActionTypes.LoadedUser, data))
+        ofType(userActions.UserActionTypes.LoadedUsers),
+        tap((data: userActions.LoadedUsers) => console.log(userActions.UserActionTypes.LoadedUsers, data))
     );
 
     @Effect({ dispatch: false })

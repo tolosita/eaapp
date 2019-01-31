@@ -3,14 +3,13 @@
   background-color: #fafafa;
 }
 
-.content-form-login {
-  padding: 40px 35px;
-  width: 100%;
+::ng-deep .mat-card-header-text {
+  margin: 0 auto !important;
 }
 
-.content-input-login {
-  margin-top: 15px;
-  margin-bottom: 20px;
+.content-form-login {
+  padding: 40px 35px;
+  width: 250px;
 }
 
 .button-login-accept {

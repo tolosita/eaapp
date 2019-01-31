@@ -16,9 +16,9 @@ const stateInit: UserState = {
 
 export function UserReducer(state = stateInit, action: UserActions.actions): UserState {
     switch (action.type) {
-        case UserActions.UserActionTypes.LoadUser:
+        case UserActions.UserActionTypes.LoadUsers:
             return { ...state, users: [], isLoading: true };
-        case UserActions.UserActionTypes.LoadedUser:
+        case UserActions.UserActionTypes.LoadedUsers:
             return { ...state, users: action.payload, isLoading: false };
         case UserActions.UserActionTypes.CreateUser:
             return { ...state, user: new User() };

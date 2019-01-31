@@ -40,6 +40,7 @@ import {
     MatFormFieldModule
 } from '@angular/material';
 import { MessagesComponent } from './pages/shared/dialog/messages/messages.component';
+import { UsuarioComponent } from './pages/shared/dialog/usuario/usuario.component';
 
 @NgModule({
     imports: [
@@ -123,7 +124,7 @@ import { MessagesComponent } from './pages/shared/dialog/messages/messages.compo
         MatFormFieldModule
     ],
     entryComponents: [
-        MessagesComponent
+        MessagesComponent, UsuarioComponent
     ],
     declarations: []
 })

@@ -1,6 +1,4 @@
-<div *ngIf="cargando" class="loader">
-  <mat-progress-bar mode="query"></mat-progress-bar>
-</div>
+<app-loader [cargando]="cargando"></app-loader>
 <mat-grid-list cols="1" rowHeight="fit" class="background-login">
   <mat-grid-tile colspan="1" rowspan="1">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -13,7 +11,7 @@
         <mat-card-subtitle *ngIf="error" class="error-text-login">
           {{ error.message }}
         </mat-card-subtitle>
-        <mat-card-content class="content-input-login">
+        <mat-card-content>
           <p>
             <mat-form-field appearance="outline">
               <mat-label>Email</mat-label>

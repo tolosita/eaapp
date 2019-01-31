@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { User } from '../../../models/user.model';
-import { LoadUser, CreateUser } from '../../../store/Actions/user.actions';
+import { LoadUsers, CreateUser } from '../../../store/Actions/user.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.store';
 import { Subscription } from 'rxjs';
@@ -26,7 +26,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.store.dispatch(new LoadUser());
+    this.store.dispatch(new LoadUsers());
     this.subscription = this.store.select('users').subscribe(users => {
       this.cargando = users.isLoading;
       this.dataSource = new MatTableDataSource(users.users);
