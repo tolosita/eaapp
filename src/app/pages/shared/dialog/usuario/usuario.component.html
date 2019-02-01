@@ -1,3 +1,35 @@
-<p>
-  usuario works!
-</p>
+<h1 mat-dialog-title>Crear Usuario</h1>
+<mat-dialog-content class="mat-typography">
+  <mat-grid-list cols="2" rowHeight="4:3">
+    <mat-grid-tile colspan="1" rowspan="1">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre">
+          <!-- <mat-error *ngIf="nombre.invalid">{{getErrorMessage(nombre)}}</mat-error> -->
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+      <mat-form-field appearance="outline">
+        <mat-label>Apellidos</mat-label>
+        <input matInput formControlName="apellidos">
+        <!-- <mat-error *ngIf="apellidos.invalid">{{getErrorMessage(apellidos)}}</mat-error> -->
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+      <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+          <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage(email)}}</mat-error> -->
+        </mat-form-field>
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" aria-label="Guardar">
+    <mat-icon>save</mat-icon>
+    <span>Guardar</span>
+  </button>
+  <button mat-button mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>
