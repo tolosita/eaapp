@@ -45,8 +45,27 @@ export class UserEffects {
     CreateUser$: Observable<Action> = this.actions$.pipe(
         ofType(userActions.UserActionTypes.CreateUser),
         tap((data: userActions.CreateUser) => {
-            this.dialog.open(UsuarioComponent, { data: 'Crear' });
+            this.dialog.open(UsuarioComponent, { width: '600px', data: true });
             console.log(userActions.UserActionTypes.CreateUser, data);
         })
+    );
+
+    @Effect()
+    SaveUser$: Observable<Action> = this.actions$.pipe(
+        ofType<userActions.SaveUser>(userActions.UserActionTypes.SaveUser),
+        tap((data: userActions.SaveUser) => console.log(userActions.UserActionTypes.SaveUser, data)),
+        mergeMap((action) =>
+            this.usuarioService.createUsuarios(action.payload)
+                .pipe(
+                    map((response) => {
+                        console.log(response);
+                        return new userActions.LoadUsers();
+                    }),
+                    catchError((error) => {
+                        console.log(error);
+                        return of(new SetError(error, 'info'));
+                    })
+                )
+        )
     );
 }

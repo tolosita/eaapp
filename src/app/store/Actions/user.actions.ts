@@ -3,7 +3,8 @@ import { Action } from '@ngrx/store';
 export enum UserActionTypes {
     LoadUsers = '[User] LOAD_USERS',
     LoadedUsers = '[User] LOADED_USERS',
-    CreateUser = '[User] CREATED_USER'
+    CreateUser = '[User] CREATED_USER',
+    SaveUser = '[User] SAVE_USER'
 }
 
 export class LoadUsers implements Action {
@@ -19,4 +20,9 @@ export class CreateUser implements Action {
     readonly type = UserActionTypes.CreateUser;
 }
 
-export type actions = LoadUsers | LoadedUsers | CreateUser;
+export class SaveUser implements Action {
+    readonly type = UserActionTypes.SaveUser;
+    constructor(public payload: any) { }
+}
+
+export type actions = LoadUsers | LoadedUsers | CreateUser | SaveUser;

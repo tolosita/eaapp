@@ -22,7 +22,8 @@
           <p>
             <mat-form-field appearance="outline">
               <mat-label>Contraseña</mat-label>
-              <input matInput formControlName="clave">
+              <input matInput formControlName="clave" [type]="hide ? 'password' : 'text'">
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
               <mat-error *ngIf="clave.invalid">{{getErrorMessage(clave)}}</mat-error>
             </mat-form-field>
           </p>

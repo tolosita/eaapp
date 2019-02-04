@@ -13,6 +13,7 @@ import { LoginUser } from '../../../store/Actions/auth.actions';
 export class LoginComponent implements OnInit, OnDestroy {
   cargando: boolean;
   error: any;
+  hide = true;
   subscription: Subscription;
   loginForm = this.fb.group({
     email: [null, [Validators.required, Validators.email]],

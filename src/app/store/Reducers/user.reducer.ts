@@ -4,13 +4,11 @@ import { User } from '../../models/user.model';
 
 export interface UserState {
     users: User[];
-    user: User;
     isLoading: boolean;
 }
 
 const stateInit: UserState = {
     users: [],
-    user: new User(),
     isLoading: false
 };
 
@@ -20,8 +18,8 @@ export function UserReducer(state = stateInit, action: UserActions.actions): Use
             return { ...state, users: [], isLoading: true };
         case UserActions.UserActionTypes.LoadedUsers:
             return { ...state, users: action.payload, isLoading: false };
-        case UserActions.UserActionTypes.CreateUser:
-            return { ...state, user: new User() };
+        case UserActions.UserActionTypes.SaveUser:
+            return { ...state, isLoading: true };
         default:
             return state;
     }

@@ -51,13 +51,13 @@ registerLocaleData(es);
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularMaterialModule,
     StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
-    EffectsModule.forRoot(appEffects),
-    AngularMaterialModule
+    EffectsModule.forRoot(appEffects)
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
