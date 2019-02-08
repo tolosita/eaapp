@@ -9,4 +9,7 @@ export class Constants {
     public static 401 = 'El usuario se encuentra inactivo';
     public static 402 = 'Email o Contraseña inválida';
     public static 403 = 'Su sesión ha expirado';
+
+    public static CREATE_USER_SUCCES = 'Se registro el usuario correctamente';
+    public static BTN_OK = 'Entendido';
 }

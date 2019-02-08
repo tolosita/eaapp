@@ -23,6 +23,7 @@ export class AlertService {
     this.alertSubcription = this.store.select('error')
       .pipe(filter((error: any) => error.reject.status === 0 || error.reject.status === 403))
       .subscribe(error => {
+        this.dialog.closeAll();
         this.dialog.open(MessagesComponent, { data: Constants[error.reject.status] })
           .afterClosed().subscribe(_ => this.store.dispatch(new LogoutUser()));
       });

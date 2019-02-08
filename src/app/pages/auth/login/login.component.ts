@@ -12,7 +12,7 @@ import { LoginUser } from '../../../store/Actions/auth.actions';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   cargando: boolean;
-  error: any;
+  error: string;
   hide = true;
   subscription: Subscription;
   loginForm = this.fb.group({

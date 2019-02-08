@@ -3,21 +3,24 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import * as userActions from '../Actions/user.actions';
 import { Observable, of } from 'rxjs';
 import { mergeMap, tap, map, catchError, retry } from 'rxjs/operators';
-import { Action } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 import { ThrowError } from '../Actions/alert.actions';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { UsuarioComponent } from '../../pages/shared/dialog/usuario/usuario.component';
 import { Constants } from '../../app.constants';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/models/user.model';
+import { AppState } from '../app.store';
 
 @Injectable()
 export class UserEffects {
     dialogRef: any;
     constructor(
         private dialog: MatDialog,
+        private snackBar: MatSnackBar,
         private actions$: Actions,
-        private http: HttpClient
+        private http: HttpClient,
+        private store: Store<AppState>
     ) { }
 
     @Effect()
@@ -48,9 +51,27 @@ export class UserEffects {
     CreateUser$: Observable<Action> = this.actions$.pipe(
         ofType(userActions.UserActionTypes.CreateUser),
         tap((data: userActions.CreateUser) => {
-            this.dialogRef = this.dialog.open(UsuarioComponent, { width: '600px', data: true });
+            this.dialogRef = this.dialog.open(UsuarioComponent, { width: '600px', data: false });
             console.log(userActions.UserActionTypes.CreateUser, data);
         })
+    );
+
+    @Effect()
+    ShowUser$: Observable<Action> = this.actions$.pipe(
+        ofType(userActions.UserActionTypes.ShowUser),
+        tap(data => console.log(userActions.UserActionTypes.ShowUser, data)),
+        mergeMap((action: userActions.ShowUser) =>
+            this.http.get<User>(`${Constants.API_ENDPOINT}/${Constants.PATH_USUARIOS}/${action.payload}`)
+                .pipe(
+                    map((response) => {
+                        this.dialogRef = this.dialog.open(UsuarioComponent, { width: '600px', data: true });
+                        return new userActions.LoadedUser(response);
+                    }),
+                    catchError((reject) => {
+                        return of(new ThrowError(reject));
+                    })
+                )
+        )
     );
 
     @Effect()
@@ -58,17 +79,16 @@ export class UserEffects {
         ofType<userActions.SaveUser>(userActions.UserActionTypes.SaveUser),
         tap((data: userActions.SaveUser) => console.log(userActions.UserActionTypes.SaveUser, data)),
         mergeMap((action) =>
-            this.http.post<User>(`${Constants.API_ENDPOINT}/${Constants.PATH_USUARIOS}`, action.payload)
+            this.http.post(`${Constants.API_ENDPOINT}/${Constants.PATH_USUARIOS}`, action.payload)
                 .pipe(
-                    retry(1),
                     map((response) => {
-                        console.log(response);
                         this.dialogRef.close();
+                        this.snackBar.open(Constants.CREATE_USER_SUCCES, Constants.BTN_OK, { duration: 3000 });
                         return new userActions.LoadUsers();
                     }),
                     catchError((reject) => {
-                        console.log(reject);
-                        return of(new ThrowError(reject));
+                        this.store.dispatch(new ThrowError(reject));
+                        return of(new userActions.ErrorUser(reject.error ? reject.error.message : null));
                     })
                 )
         )

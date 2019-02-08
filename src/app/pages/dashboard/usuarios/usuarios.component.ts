@@ -1,22 +1,20 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { User } from '../../../models/user.model';
-import { LoadUsers, CreateUser } from '../../../store/Actions/user.actions';
+import * as fromActionsUser from '../../../store/Actions/user.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.store';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
   styleUrls: ['./usuarios.component.scss']
 })
-export class UsuariosComponent implements OnInit, OnDestroy {
+export class UsuariosComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'nombre', 'apellidos', 'fechaNacimiento', 'direccion', 'email', 'role'];
   dataSource: MatTableDataSource<User>;
   cargando: boolean;
-  subscription: Subscription;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -26,17 +24,13 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.store.dispatch(new LoadUsers());
-    this.subscription = this.store.select('users').subscribe(users => {
+    this.store.dispatch(new fromActionsUser.LoadUsers());
+    this.store.select('users').subscribe(users => {
       this.cargando = users.isLoading;
       this.dataSource = new MatTableDataSource(users.users);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 
   applyFilter(filterValue: string) {
@@ -48,7 +42,11 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   }
 
   crearUsuario() {
-    this.store.dispatch(new CreateUser());
+    this.store.dispatch(new fromActionsUser.CreateUser());
+  }
+
+  mostrarUsuario(id: number) {
+    this.store.dispatch(new fromActionsUser.ShowUser(id));
   }
 
 }
