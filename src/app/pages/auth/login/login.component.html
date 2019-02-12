@@ -1,8 +1,8 @@
 <app-loader [cargando]="cargando"></app-loader>
-<mat-grid-list cols="1" rowHeight="fit" class="background-login">
+<mat-grid-list cols="1" rowHeight="fit" class="background-100">
   <mat-grid-tile colspan="1" rowspan="1">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <mat-card class="content-form-login">
+      <mat-card class="content-form">
         <mat-card-header>
           <mat-card-title>
             Iniciar Sesión
@@ -11,7 +11,7 @@
         <mat-card-subtitle *ngIf="error" class="error-text">
           {{ error }}
         </mat-card-subtitle>
-        <mat-card-content class="content-input-login">
+        <mat-card-content class="content-input">
           <p>
             <mat-form-field appearance="outline">
               <mat-label>Email</mat-label>
@@ -27,10 +27,11 @@
               <mat-error *ngIf="clave.invalid">{{getErrorMessage(clave)}}</mat-error>
             </mat-form-field>
           </p>
-          <mat-checkbox formControlName="recordar">Recordar contraseña</mat-checkbox>
+          <a routerLink="/recuperar">Recuperar Contraseña</a>
         </mat-card-content>
         <mat-card-actions>
-          <button type="submit" mat-flat-button color="primary" class="button-login-accept" [disabled]="cargando">Ingresar</button>
+          <button type="submit" mat-flat-button color="primary" class="button-login-accept"
+            [disabled]="cargando">Ingresar</button>
         </mat-card-actions>
       </mat-card>
     </form>

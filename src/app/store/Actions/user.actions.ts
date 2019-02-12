@@ -7,6 +7,8 @@ export enum UserActionTypes {
     CreateUser = '[User] CREATE_USER',
     ShowUser = '[User] SHOW_USER',
     SaveUser = '[User] SAVE_USER',
+    EditUser = '[User] EDIT_USER',
+    DeleteUser = '[User] DELETE_USER',
     ErrorUser = '[User] ERROR_USER'
 }
 
@@ -38,9 +40,19 @@ export class SaveUser implements Action {
     constructor(public payload: any) { }
 }
 
+export class EditUser implements Action {
+    readonly type = UserActionTypes.EditUser;
+    constructor(public payload: any) { }
+}
+
+export class DeleteUser implements Action {
+    readonly type = UserActionTypes.DeleteUser;
+    constructor(public payload: any) { }
+}
+
 export class ErrorUser implements Action {
     readonly type = UserActionTypes.ErrorUser;
     constructor(public payload: any) { }
 }
 
-export type actions = LoadUsers | LoadedUsers | CreateUser | ShowUser | LoadedUser | SaveUser | ErrorUser;
+export type actions = LoadUsers | LoadedUsers | CreateUser | ShowUser | LoadedUser | SaveUser | EditUser | DeleteUser | ErrorUser;

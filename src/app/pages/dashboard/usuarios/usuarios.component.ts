@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { User } from '../../../models/user.model';
 import * as fromActionsUser from '../../../store/Actions/user.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.store';
+import { ConfirmComponent } from '../../shared/dialog/confirm/confirm.component';
 
 @Component({
   selector: 'app-usuarios',
@@ -12,7 +13,7 @@ import { AppState } from 'src/app/store/app.store';
 })
 export class UsuariosComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'nombre', 'apellidos', 'fechaNacimiento', 'direccion', 'email', 'role'];
+  displayedColumns: string[] = ['id', 'nombre', 'apellidos', 'fechaNacimiento', 'direccion', 'email', 'role', 'action'];
   dataSource: MatTableDataSource<User>;
   cargando: boolean;
 
@@ -20,6 +21,7 @@ export class UsuariosComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
+    private dialog: MatDialog,
     private store: Store<AppState>
   ) { }
 
@@ -47,6 +49,14 @@ export class UsuariosComponent implements OnInit {
 
   mostrarUsuario(id: number) {
     this.store.dispatch(new fromActionsUser.ShowUser(id));
+  }
+
+  deleteUsuario(id: number) {
+    this.dialog.open(ConfirmComponent, {
+      data: () => {
+        this.store.dispatch(new fromActionsUser.DeleteUser(id));
+      }
+    });
   }
 
 }

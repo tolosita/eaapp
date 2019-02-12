@@ -4,7 +4,8 @@ export class User {
     public id: number;
     public nombre: string;
     public apellidos: string;
-    public fechaNacimiento: Date;
+    public fechaNacimiento: string;
+    public direccion: string;
     public email: string;
     public clave: string;
     public role: Role;

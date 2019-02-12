@@ -93,4 +93,43 @@ export class UserEffects {
                 )
         )
     );
+
+    @Effect()
+    EditUser$: Observable<Action> = this.actions$.pipe(
+        ofType<userActions.EditUser>(userActions.UserActionTypes.EditUser),
+        tap((data: userActions.EditUser) => console.log(userActions.UserActionTypes.EditUser, data)),
+        mergeMap((action) =>
+            this.http.put(`${Constants.API_ENDPOINT}/${Constants.PATH_USUARIOS}/${action.payload.id}`, action.payload)
+                .pipe(
+                    map((response) => {
+                        this.dialogRef.close();
+                        this.snackBar.open(Constants.UPDATE_USER_SUCCES, Constants.BTN_OK, { duration: 3000 });
+                        return new userActions.LoadUsers();
+                    }),
+                    catchError((reject) => {
+                        this.store.dispatch(new ThrowError(reject));
+                        return of(new userActions.ErrorUser(reject.error ? reject.error.message : null));
+                    })
+                )
+        )
+    );
+
+    @Effect()
+    DeleteUser$: Observable<Action> = this.actions$.pipe(
+        ofType<userActions.DeleteUser>(userActions.UserActionTypes.DeleteUser),
+        tap((data: userActions.DeleteUser) => console.log(userActions.UserActionTypes.DeleteUser, data)),
+        mergeMap((action) =>
+            this.http.delete(`${Constants.API_ENDPOINT}/${Constants.PATH_USUARIOS}/${action.payload}`)
+                .pipe(
+                    map((response) => {
+                        this.dialog.closeAll();
+                        this.snackBar.open(Constants.DELETE_USER_SUCCES, Constants.BTN_OK, { duration: 3000 });
+                        return new userActions.LoadUsers();
+                    }),
+                    catchError((reject) => {
+                        return of(new ThrowError(reject));
+                    })
+                )
+        )
+    );
 }

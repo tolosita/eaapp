@@ -1,3 +1,31 @@
-<p>
-  recuperar works!
-</p>
+<app-loader [cargando]="cargando"></app-loader>
+<mat-grid-list cols="1" rowHeight="fit" class="background-100">
+  <mat-grid-tile colspan="1" rowspan="1">
+    <form [formGroup]="recuperarForm" (ngSubmit)="onSubmit()">
+      <mat-card class="content-form">
+        <mat-card-header>
+          <mat-card-title>
+            Recuperar Contraseña
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-subtitle *ngIf="error" class="error-text">
+          {{ error }}
+        </mat-card-subtitle>
+        <mat-card-content class="content-input">
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email">
+              <mat-error *ngIf="email.invalid">{{getErrorMessage(email)}}</mat-error>
+            </mat-form-field>
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button routerLink="/login" mat-button class="button-recuperar-btn">volver</button>
+          <button type="submit" mat-flat-button color="primary" class="button-recuperar-btn"
+            [disabled]="cargando">Enviar</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </mat-grid-tile>
+</mat-grid-list>

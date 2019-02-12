@@ -48,7 +48,7 @@
       <mat-grid-tile>
         <mat-form-field appearance="outline">
           <mat-select placeholder="Cargo" formControlName="role">
-            <mat-option *ngFor="let cargo of cargos" [value]="cargo">{{cargo.nombre | slice:5}}</mat-option>
+            <mat-option *ngFor="let cargo of cargos" [value]="cargo.id">{{cargo.nombre | slice:5}}</mat-option>
           </mat-select>
           <mat-error *ngIf="role.invalid">{{getErrorMessage(role)}}</mat-error>
         </mat-form-field>

@@ -8,7 +8,7 @@ import { LoginUser } from '../../../store/Actions/auth.actions';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  styles: [],
 })
 export class LoginComponent implements OnInit, OnDestroy {
   cargando: boolean;
@@ -17,8 +17,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   loginForm = this.fb.group({
     email: [null, [Validators.required, Validators.email]],
-    clave: [null, Validators.required],
-    recordar: [false]
+    clave: [null, Validators.required]
   });
 
   constructor(
@@ -39,7 +38,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if (this.loginForm.invalid) { return; }
-    delete this.loginForm.value.recordar;
     this.store.dispatch(new LoginUser(this.loginForm.value));
   }
 

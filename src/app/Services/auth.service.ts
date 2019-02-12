@@ -1,7 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
-import { LogoutUser } from '../store/Actions/auth.actions';
-import { Store } from '@ngrx/store';
-import { AppState } from '../store/app.store';
+import { HttpClient } from '@angular/common/http';
+import { Constants } from '../app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +8,8 @@ import { AppState } from '../store/app.store';
 export class AuthService {
 
   constructor(
-    private store: Store<AppState>,
-    @Inject('LOCALSTORAGE') private localStorage: any
+    @Inject('LOCALSTORAGE') private localStorage: any,
+    private http: HttpClient
   ) { }
 
   getToken(): string {
@@ -20,5 +19,9 @@ export class AuthService {
   isLoggedIn() {
     const token = this.getToken();
     return token != null;
+  }
+
+  recuperarClave(email: string) {
+    return this.http.post(`${Constants.API_ENDPOINT}/${Constants.PATH_RECUPERAR}`, email).toPromise();
   }
 }

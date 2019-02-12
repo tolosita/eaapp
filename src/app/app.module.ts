@@ -23,12 +23,13 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FooterComponent } from './pages/shared/footer/footer.component';
 import { UsuariosComponent } from './pages/dashboard/usuarios/usuarios.component';
 import { MessagesComponent } from './pages/shared/dialog/messages/messages.component';
+import { UsuarioComponent } from './pages/shared/dialog/usuario/usuario.component';
+import { ConfirmComponent } from './pages/shared/dialog/confirm/confirm.component';
 import { LoaderComponent } from './pages/shared/loader/loader.component';
 
 import { TokenInterceptor } from './app.interceptor';
 import es from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
-import { UsuarioComponent } from './pages/shared/dialog/usuario/usuario.component';
 
 registerLocaleData(es);
 
@@ -43,7 +44,8 @@ registerLocaleData(es);
     UsuariosComponent,
     MessagesComponent,
     LoaderComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,

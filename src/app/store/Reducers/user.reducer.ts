@@ -1,7 +1,6 @@
 import * as UserActions from '../Actions/user.actions';
 
 import { User } from '../../models/user.model';
-import { CreateUser } from '../Actions/user.actions';
 
 export interface UserState {
     users: User[];
@@ -26,10 +25,11 @@ export function UserReducer(state = stateInit, action: UserActions.actions): Use
         case UserActions.UserActionTypes.LoadedUsers:
             return { ...state, users: action.payload, isLoading: false };
         case UserActions.UserActionTypes.CreateUser:
-            return { ...state, user: null, error: null };
+            return { ...state, user: new User(), error: null };
         case UserActions.UserActionTypes.ShowUser:
-            return { ...state, isLoading: true, error: null };
         case UserActions.UserActionTypes.SaveUser:
+        case UserActions.UserActionTypes.EditUser:
+        case UserActions.UserActionTypes.DeleteUser:
             return { ...state, isLoading: true, error: null };
         case UserActions.UserActionTypes.ErrorUser:
             return { ...state, error: action.payload, isLoading: false };

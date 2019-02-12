@@ -41,6 +41,7 @@ import {
 } from '@angular/material';
 import { MessagesComponent } from './pages/shared/dialog/messages/messages.component';
 import { UsuarioComponent } from './pages/shared/dialog/usuario/usuario.component';
+import { ConfirmComponent } from './pages/shared/dialog/confirm/confirm.component';
 
 @NgModule({
     imports: [
@@ -124,7 +125,7 @@ import { UsuarioComponent } from './pages/shared/dialog/usuario/usuario.componen
         MatFormFieldModule
     ],
     entryComponents: [
-        MessagesComponent, UsuarioComponent
+        MessagesComponent, UsuarioComponent, ConfirmComponent
     ],
     declarations: []
 })
