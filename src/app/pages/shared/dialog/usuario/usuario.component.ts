@@ -24,7 +24,7 @@ export class UsuarioComponent implements OnInit {
     nombre: [null, Validators.required],
     apellidos: [null, Validators.required],
     fechaNacimiento: [null, Validators.required],
-    direccion: [null, Validators.required],
+    direccion: [''],
     email: [null, [Validators.required, Validators.email]],
     clave: [null, [Validators.required, Validators.minLength(6)]],
     role: [null, Validators.required]

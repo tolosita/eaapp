@@ -19,6 +19,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RecuperarComponent } from './pages/auth/recuperar/recuperar.component';
 import { HomeComponent } from './pages/dashboard/home/home.component';
+import { NavComponent } from './pages/shared/nav/nav.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FooterComponent } from './pages/shared/footer/footer.component';
 import { UsuariosComponent } from './pages/dashboard/usuarios/usuarios.component';
@@ -45,7 +46,8 @@ registerLocaleData(es);
     MessagesComponent,
     LoaderComponent,
     UsuarioComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

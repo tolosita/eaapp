@@ -1,13 +1,7 @@
-<mat-toolbar color="primary">
-    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()" *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-    </button>
-    <label class="logo">ea</label>
-</mat-toolbar>
-
+<app-nav [sidenav]="sidenav"></app-nav>
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #sidenav class="sidenav" fixedInViewport="false" role="navigation" [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="!(isHandset$ | async)">
+    <mat-sidenav #sidenav class="sidenav" fixedInViewport="false" role="navigation"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
         <mat-nav-list>
             <a mat-list-item [routerLink]="ruta.path" *ngFor="let ruta of rutas">
                 <mat-icon matListIcon>{{ ruta.icon }}</mat-icon>

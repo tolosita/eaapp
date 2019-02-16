@@ -26,7 +26,7 @@
       <mat-grid-tile>
         <mat-form-field appearance="outline">
           <mat-label>Dirección</mat-label>
-          <input matInput formControlName="direccion" required>
+          <input matInput formControlName="direccion">
           <mat-error *ngIf="direccion.invalid">{{getErrorMessage(direccion)}}</mat-error>
         </mat-form-field>
       </mat-grid-tile>
