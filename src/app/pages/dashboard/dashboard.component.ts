@@ -8,8 +8,9 @@ import { User } from '../../models/user.model';
 import { LogoutUser } from '../../store/Actions/auth.actions';
 
 const routes: any[] = [
-  { path: '/', name: 'Inicio', icon: 'home' },
-  { path: '/usuarios', name: 'Usuarios', icon: 'people', }
+  { path: '/dashboard', name: 'Inicio', icon: 'home' },
+  { path: '/usuarios', name: 'Usuarios', icon: 'people', },
+  { path: '/garantias', name: 'Garantias', icon: 'assignment', }
 ];
 
 @Component({

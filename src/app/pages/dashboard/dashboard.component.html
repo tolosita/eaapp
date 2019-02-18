@@ -3,7 +3,7 @@
     <mat-sidenav #sidenav class="sidenav" fixedInViewport="false" role="navigation"
         [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
         <mat-nav-list>
-            <a mat-list-item [routerLink]="ruta.path" *ngFor="let ruta of rutas">
+            <a mat-list-item [routerLink]="ruta.path" *ngFor="let ruta of rutas" routerLinkActive="active">
                 <mat-icon matListIcon>{{ ruta.icon }}</mat-icon>
                 <p>{{ ruta.name }}</p>
             </a>

@@ -3,8 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RecuperarComponent } from './pages/auth/recuperar/recuperar.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { dashboardRoutes } from './pages/dashboard/dashboard.routes';
 import { AuthGuardService } from './services/auth-guard.service';
+import { HomeComponent } from './pages/dashboard/home/home.component';
+import { UsuariosComponent } from './pages/dashboard/usuarios/usuarios.component';
+import { GarantiasComponent } from './pages/dashboard/garantias/garantias.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -12,7 +14,12 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    children: dashboardRoutes,
+    children: [
+      { path: 'dashboard', component: HomeComponent },
+      { path: 'usuarios', component: UsuariosComponent },
+      { path: 'garantias', component: GarantiasComponent },
+      { path: '**', redirectTo: '/dashboard' }
+    ],
     canActivate: [AuthGuardService]
   },
   { path: '**', redirectTo: '/' }
