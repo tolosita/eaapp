@@ -24,11 +24,12 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FooterComponent } from './pages/shared/footer/footer.component';
 import { UsuariosComponent } from './pages/dashboard/usuarios/usuarios.component';
 import { MessagesComponent } from './pages/shared/dialog/messages/messages.component';
-import { UsuarioComponent } from './pages/shared/dialog/usuario/usuario.component';
+import { UsuarioComponent } from './pages/dashboard/usuarios/usuario/usuario.component';
 import { ConfirmComponent } from './pages/shared/dialog/confirm/confirm.component';
 import { LoaderComponent } from './pages/shared/loader/loader.component';
 import { GarantiasComponent } from './pages/dashboard/garantias/garantias.component';
 import { ClientesComponent } from './pages/dashboard/clientes/clientes.component';
+import { ClienteComponent } from './pages/dashboard/clientes/cliente/cliente.component';
 
 import { TokenInterceptor } from './app.interceptor';
 import es from '@angular/common/locales/es';
@@ -51,7 +52,8 @@ registerLocaleData(es);
     ConfirmComponent,
     NavComponent,
     GarantiasComponent,
-    ClientesComponent
+    ClientesComponent,
+    ClienteComponent
   ],
   imports: [
     BrowserModule,

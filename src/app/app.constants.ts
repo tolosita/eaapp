@@ -1,6 +1,7 @@
 export class Constants {
     public static API_ENDPOINT = 'http://localhost:8090/EAapp-Back/api';
     public static PATH_USUARIOS = 'usuarios';
+    public static PATH_CLIENTES = 'clientes';
     public static PATH_LOGIN = 'login';
     public static PATH_RECUPERAR = 'recuperar';
     public static PATH_CARGOS = 'roles';

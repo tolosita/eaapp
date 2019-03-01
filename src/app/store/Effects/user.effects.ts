@@ -6,7 +6,7 @@ import { mergeMap, tap, map, catchError, retry } from 'rxjs/operators';
 import { Action, Store } from '@ngrx/store';
 import { ThrowError } from '../Actions/alert.actions';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { UsuarioComponent } from '../../pages/shared/dialog/usuario/usuario.component';
+import { UsuarioComponent } from '../../pages/dashboard/usuarios/usuario/usuario.component';
 import { Constants } from '../../app.constants';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/models/user.model';
@@ -42,7 +42,7 @@ export class UserEffects {
     );
 
     @Effect({ dispatch: false })
-    LoadedUser$: Observable<Action> = this.actions$.pipe(
+    LoadedUsers$: Observable<Action> = this.actions$.pipe(
         ofType(userActions.UserActionTypes.LoadedUsers),
         tap((data: userActions.LoadedUsers) => console.log(userActions.UserActionTypes.LoadedUsers, data))
     );

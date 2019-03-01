@@ -9,7 +9,7 @@ import { ConfirmComponent } from '../../shared/dialog/confirm/confirm.component'
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.scss']
+  styles: [],
 })
 export class UsuariosComponent implements OnInit {
 
