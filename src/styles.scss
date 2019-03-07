@@ -5,8 +5,8 @@
 @import "~@angular/material/theming";
 @include mat-core();
 
-$my-app-primary: mat-palette($mat-blue);
-$my-app-accent: mat-palette($mat-pink, 500, 900, A100);
+$my-app-primary: mat-palette($mat-grey, 900);
+$my-app-accent: mat-palette($mat-blue, 900);
 $my-app-warn: mat-palette($mat-deep-orange);
 $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 @include angular-material-theme($my-app-theme);
@@ -88,4 +88,14 @@ table {
 
 .btn-add {
   top: 30px;
+}
+
+app-dashboard {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 64px;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

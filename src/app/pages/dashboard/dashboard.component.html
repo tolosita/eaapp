@@ -1,4 +1,4 @@
-<app-nav [sidenav]="sidenav"></app-nav>
+<app-nav [sidenav]="sidenav" class="mat-elevation-z2 nav-bar"></app-nav>
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #sidenav class="sidenav" fixedInViewport="false" role="navigation"
         [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
