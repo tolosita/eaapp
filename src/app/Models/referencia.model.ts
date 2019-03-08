@@ -1,15 +1,4 @@
-export interface IReferencia {
-    referencia: string;
-    color: string;
-    talla: number;
-    total: number;
-    cliente: string;
-    factura: string;
-    observaciones: string;
-    fechaRecibido: Date;
-}
-
-export class Referencia implements IReferencia {
+export class Referencia {
     public referencia: string;
     public color: string;
     public talla: number;

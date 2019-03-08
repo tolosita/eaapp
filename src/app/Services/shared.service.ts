@@ -19,4 +19,8 @@ export class SharedService {
     getTipoDocumentos(): Observable<TipoDocumento[]> {
         return this.http.get<TipoDocumento[]>(`${Constants.API_ENDPOINT}/${Constants.PATH_TIPO_DOCUMENTOS}`);
     }
+
+    getCausas(): Observable<any[]> {
+        return this.http.get<any[]>(`${Constants.API_ENDPOINT}/${Constants.PATH_CAUSAS}`);
+    }
 }

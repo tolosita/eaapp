@@ -6,16 +6,16 @@ import { mergeMap, tap, map, catchError, retry } from 'rxjs/operators';
 import { Action, Store } from '@ngrx/store';
 import { ThrowError } from '../Actions/alert.actions';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { UsuarioComponent } from '../../pages/dashboard/usuarios/usuario/usuario.component';
 import { Constants } from '../../app.constants';
 import { HttpClient } from '@angular/common/http';
 import { Garantia } from 'src/app/models/garantia.model';
 import { AppState } from '../app.store';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class GarantiaEffects {
-    dialogRef: any;
     constructor(
+        private router: Router,
         private dialog: MatDialog,
         private snackBar: MatSnackBar,
         private actions$: Actions,
@@ -47,15 +47,6 @@ export class GarantiaEffects {
         tap((data: garantiaActions.LoadedGarantias) => console.log(garantiaActions.GarantiaActionTypes.LoadedGarantias, data))
     );
 
-    @Effect({ dispatch: false })
-    CreateGarantia$: Observable<Action> = this.actions$.pipe(
-        ofType(garantiaActions.GarantiaActionTypes.CreateGarantia),
-        tap((data: garantiaActions.CreateGarantia) => {
-            this.dialogRef = this.dialog.open(UsuarioComponent, { width: '600px', data: false });
-            console.log(garantiaActions.GarantiaActionTypes.CreateGarantia, data);
-        })
-    );
-
     @Effect()
     ShowGarantia$: Observable<Action> = this.actions$.pipe(
         ofType(garantiaActions.GarantiaActionTypes.ShowGarantia),
@@ -64,7 +55,6 @@ export class GarantiaEffects {
             this.http.get<Garantia>(`${Constants.API_ENDPOINT}/${Constants.PATH_GARANTIAS}/${action.payload}`)
                 .pipe(
                     map((response) => {
-                        this.dialogRef = this.dialog.open(UsuarioComponent, { width: '600px', data: true });
                         return new garantiaActions.LoadedGarantia(response);
                     }),
                     catchError((reject) => {
@@ -82,8 +72,8 @@ export class GarantiaEffects {
             this.http.post(`${Constants.API_ENDPOINT}/${Constants.PATH_GARANTIAS}`, action.payload)
                 .pipe(
                     map((response) => {
-                        this.dialogRef.close();
                         this.snackBar.open(Constants.CREATE_SUCCES, Constants.BTN_OK, { duration: 3000 });
+                        this.router.navigate(['garantias']);
                         return new garantiaActions.LoadGarantias();
                     }),
                     catchError((reject) => {
@@ -102,7 +92,6 @@ export class GarantiaEffects {
             this.http.put(`${Constants.API_ENDPOINT}/${Constants.PATH_GARANTIAS}/${action.payload.id}`, action.payload)
                 .pipe(
                     map((response) => {
-                        this.dialogRef.close();
                         this.snackBar.open(Constants.UPDATE_SUCCES, Constants.BTN_OK, { duration: 3000 });
                         return new garantiaActions.LoadGarantias();
                     }),

@@ -11,3 +11,17 @@ $width-stand: 220px;
 tr.mat-header-row th {
   font-weight: bold;
 }
+
+.btn-add-row {
+  right: 16px;
+  position: absolute;
+}
+
+.btn-check-flex {
+  flex-wrap: wrap;
+  border: 0;
+
+  .mat-button-toggle {
+    border: solid 1px rgba(0, 0, 0, 0.12);
+  }
+}
