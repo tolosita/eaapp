@@ -1,10 +1,10 @@
 export class Referencia {
-    public referencia: string;
+    public nombre: string;
     public color: string;
     public talla: number;
     public total: number;
-    public cliente: string;
-    public factura: string;
+    public cliente: any;
+    public nroFactura: string;
     public observaciones: string;
-    public fechaRecibido: Date;
+    public fechaRecibido: string;
 }

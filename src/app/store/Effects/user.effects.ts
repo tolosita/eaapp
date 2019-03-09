@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import * as userActions from '../Actions/user.actions';
 import { Observable, of } from 'rxjs';
-import { mergeMap, tap, map, catchError, retry } from 'rxjs/operators';
+import { mergeMap, tap, map, catchError } from 'rxjs/operators';
 import { Action, Store } from '@ngrx/store';
 import { ThrowError } from '../Actions/alert.actions';
 import { MatDialog, MatSnackBar } from '@angular/material';
@@ -30,7 +30,6 @@ export class UserEffects {
         mergeMap((action) =>
             this.http.get<User[]>(`${Constants.API_ENDPOINT}/${Constants.PATH_USUARIOS}`)
                 .pipe(
-                    retry(1),
                     map((response) => {
                         return new userActions.LoadedUsers(response);
                     }),

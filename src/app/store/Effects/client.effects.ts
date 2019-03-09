@@ -6,12 +6,11 @@ import { HttpClient } from '@angular/common/http';
 import { Store, Action } from '@ngrx/store';
 import { AppState } from '../app.store';
 import { Observable, of } from 'rxjs';
-import { tap, mergeMap, retry, map, catchError } from 'rxjs/operators';
+import { tap, mergeMap, map, catchError } from 'rxjs/operators';
 import { Constants } from 'src/app/app.constants';
 import { Client } from '../../models/client.model';
 import { ThrowError } from '../Actions/alert.actions';
 import { ClienteComponent } from '../../pages/dashboard/clientes/cliente/cliente.component';
-import { ShowClient, LoadedClient } from '../Actions/client.actions';
 
 @Injectable()
 export class ClientEffects {
@@ -31,7 +30,6 @@ export class ClientEffects {
         mergeMap((action) =>
             this.http.get<Client[]>(`${Constants.API_ENDPOINT}/${Constants.PATH_CLIENTES}`)
                 .pipe(
-                    retry(1),
                     map((response) => {
                         return new clientActions.LoadedClients(response);
                     }),

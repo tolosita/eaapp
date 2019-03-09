@@ -23,4 +23,12 @@ export class SharedService {
     getCausas(): Observable<any[]> {
         return this.http.get<any[]>(`${Constants.API_ENDPOINT}/${Constants.PATH_CAUSAS}`);
     }
+
+    getReferencias(id: number): Observable<any[]> {
+        return this.http.get<any[]>(`${Constants.API_ENDPOINT}/${Constants.PATH_REFERENCIAS}/${id}`);
+    }
+
+    getGarantiaCausas(id: number): Observable<any[]> {
+        return this.http.get<any[]>(`${Constants.API_ENDPOINT}/${Constants.PATH_CAUSAS}/${id}`);
+    }
 }

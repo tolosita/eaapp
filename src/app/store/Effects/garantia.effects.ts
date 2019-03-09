@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import * as garantiaActions from '../Actions/garantia.actions';
 import { Observable, of } from 'rxjs';
-import { mergeMap, tap, map, catchError, retry } from 'rxjs/operators';
+import { mergeMap, tap, map, catchError } from 'rxjs/operators';
 import { Action, Store } from '@ngrx/store';
 import { ThrowError } from '../Actions/alert.actions';
 import { MatDialog, MatSnackBar } from '@angular/material';
@@ -30,7 +30,6 @@ export class GarantiaEffects {
         mergeMap((action) =>
             this.http.get<Garantia[]>(`${Constants.API_ENDPOINT}/${Constants.PATH_GARANTIAS}`)
                 .pipe(
-                    retry(1),
                     map((response) => {
                         return new garantiaActions.LoadedGarantias(response);
                     }),
@@ -64,43 +63,42 @@ export class GarantiaEffects {
         )
     );
 
-    @Effect()
+    @Effect({ dispatch: false })
     SaveGarantia$: Observable<Action> = this.actions$.pipe(
         ofType<garantiaActions.SaveGarantia>(garantiaActions.GarantiaActionTypes.SaveGarantia),
-        tap((data: garantiaActions.SaveGarantia) => console.log(garantiaActions.GarantiaActionTypes.SaveGarantia, data)),
-        mergeMap((action) =>
-            this.http.post(`${Constants.API_ENDPOINT}/${Constants.PATH_GARANTIAS}`, action.payload)
-                .pipe(
-                    map((response) => {
-                        this.snackBar.open(Constants.CREATE_SUCCES, Constants.BTN_OK, { duration: 3000 });
-                        this.router.navigate(['garantias']);
-                        return new garantiaActions.LoadGarantias();
-                    }),
-                    catchError((reject) => {
-                        this.store.dispatch(new ThrowError(reject));
-                        return of(new garantiaActions.ErrorGarantia(reject.error ? reject.error.message : null));
-                    })
-                )
-        )
+        tap((data: garantiaActions.SaveGarantia) => {
+            console.log(garantiaActions.GarantiaActionTypes.SaveGarantia, data);
+            this.http.post(`${Constants.API_ENDPOINT}/${Constants.PATH_GARANTIAS}`, data.payload)
+                .subscribe((response: Garantia) => {
+                    data.payload.referencias.forEach(element => {
+                        this.http.post(`${Constants.API_ENDPOINT}/${Constants.PATH_REFERENCIAS}/${response.id}`, element).subscribe();
+                    });
+                    data.payload.causas.forEach(element => {
+                        this.http.post(`${Constants.API_ENDPOINT}/${Constants.PATH_CAUSAS}/${response.id}`, element).subscribe();
+                    });
+                    this.snackBar.open(Constants.CREATE_SUCCES, Constants.BTN_OK, { duration: 3000 });
+                    this.router.navigate(['garantias']);
+                });
+        })
     );
 
-    @Effect()
+    @Effect({ dispatch: false })
     EditGarantia$: Observable<Action> = this.actions$.pipe(
         ofType<garantiaActions.EditGarantia>(garantiaActions.GarantiaActionTypes.EditGarantia),
-        tap((data: garantiaActions.EditGarantia) => console.log(garantiaActions.GarantiaActionTypes.EditGarantia, data)),
-        mergeMap((action) =>
-            this.http.put(`${Constants.API_ENDPOINT}/${Constants.PATH_GARANTIAS}/${action.payload.id}`, action.payload)
-                .pipe(
-                    map((response) => {
-                        this.snackBar.open(Constants.UPDATE_SUCCES, Constants.BTN_OK, { duration: 3000 });
-                        return new garantiaActions.LoadGarantias();
-                    }),
-                    catchError((reject) => {
-                        this.store.dispatch(new ThrowError(reject));
-                        return of(new garantiaActions.ErrorGarantia(reject.error ? reject.error.message : null));
-                    })
-                )
-        )
+        tap((data: garantiaActions.EditGarantia) => {
+            console.log(garantiaActions.GarantiaActionTypes.EditGarantia, data);
+            this.http.put(`${Constants.API_ENDPOINT}/${Constants.PATH_GARANTIAS}/${data.payload.id}`, data.payload)
+                .subscribe((response: Garantia) => {
+                    data.payload.referencias.forEach(element => {
+                        this.http.post(`${Constants.API_ENDPOINT}/${Constants.PATH_REFERENCIAS}/${response.id}`, element).subscribe();
+                    });
+                    data.payload.causas.forEach(element => {
+                        this.http.post(`${Constants.API_ENDPOINT}/${Constants.PATH_CAUSAS}/${response.id}`, element).subscribe();
+                    });
+                    this.snackBar.open(Constants.UPDATE_SUCCES, Constants.BTN_OK, { duration: 3000 });
+                    this.router.navigate(['garantias']);
+                });
+        })
     );
 
     @Effect()

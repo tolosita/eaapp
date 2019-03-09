@@ -19,7 +19,7 @@ const stateInit: GarantiaState = {
 export function GarantiaReducer(state = stateInit, action: GarantiaActions.actions): GarantiaState {
     switch (action.type) {
         case GarantiaActions.GarantiaActionTypes.LoadGarantias:
-            return { ...state, garantias: [], isLoading: true };
+            return { ...state, garantia: new Garantia(), garantias: [], isLoading: true };
         case GarantiaActions.GarantiaActionTypes.LoadedGarantia:
             return { ...state, garantia: action.payload, isLoading: false };
         case GarantiaActions.GarantiaActionTypes.LoadedGarantias:

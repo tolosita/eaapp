@@ -8,6 +8,7 @@ export class Constants {
     public static PATH_TIPO_DOCUMENTOS = 'tipoDocumentos';
     public static PATH_CAUSAS = 'causas';
     public static PATH_GARANTIAS = 'garantias';
+    public static PATH_REFERENCIAS = 'referencias';
     public static IMAGES = 'assets/images';
 
     public static 0 = 'Servidor Inaccesible';

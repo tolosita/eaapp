@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import * as authActions from '../Actions/auth.actions';
 import { Observable, of } from 'rxjs';
-import { mergeMap, tap, map, catchError, retry } from 'rxjs/operators';
+import { mergeMap, tap, map, catchError } from 'rxjs/operators';
 import { Action, Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { AppState } from '../app.store';
@@ -28,7 +28,6 @@ export class AuthEffects {
         mergeMap((action) =>
             this.http.post(`${Constants.API_ENDPOINT}/${Constants.PATH_LOGIN}`, action.payload)
                 .pipe(
-                    retry(1),
                     map((response) => {
                         return new authActions.LoggedUser(response);
                     }),

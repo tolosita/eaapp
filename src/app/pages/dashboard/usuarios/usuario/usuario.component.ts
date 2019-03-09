@@ -62,6 +62,7 @@ export class UsuarioComponent implements OnInit {
 
   onSubmit() {
     if (this.userForm.invalid) { return; }
+    this.userForm.value.fechaNacimiento = `${this.userForm.value.fechaNacimiento}T12:00:00.00000`;
     this.userForm.value.role = this.cargos.find(rol => rol.id === this.userForm.value.role);
     this.store.dispatch(this.data ? new EditUser({ ...this.userForm.value, id: this.id }) : new SaveUser(this.userForm.value));
   }
