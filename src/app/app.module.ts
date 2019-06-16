@@ -34,7 +34,7 @@ import { GarantiaComponent } from './pages/dashboard/garantias/garantia/garantia
 
 import { TokenInterceptor } from './app.interceptor';
 import es from '@angular/common/locales/es';
-import { registerLocaleData } from '@angular/common';
+import { registerLocaleData, APP_BASE_HREF } from '@angular/common';
 import { RestablecerComponent } from './pages/auth/restablecer/restablecer.component';
 
 registerLocaleData(es);
@@ -74,6 +74,7 @@ registerLocaleData(es);
     EffectsModule.forRoot(appEffects)
   ],
   providers: [
+    { provide: APP_BASE_HREF, useValue: '/EAapp' },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: 'LOCALSTORAGE', useFactory: getLocalStorage },
     { provide: LOCALE_ID, useValue: 'es-CO' }
